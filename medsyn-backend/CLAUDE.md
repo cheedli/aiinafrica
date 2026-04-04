@@ -7,5 +7,6 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #2981 | 3:15 PM | 🟣 | FastAPI Backend Core with SSE Streaming Endpoints | ~457 |
 | #2970 | 3:13 PM | ✅ | Backend Dependencies Configuration Created | ~397 |
 </claude-mem-context>

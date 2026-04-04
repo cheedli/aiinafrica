@@ -1,6 +1,3 @@
-from transformers import AutoProcessor, AutoModelForCausalLM
-from PIL import Image
-import torch
 import io
 
 _model = None
@@ -9,18 +6,27 @@ _processor = None
 def _load_model():
     global _model, _processor
     if _model is None:
-        model_id = "microsoft/Florence-2-large"
-        _processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)
-        _model = AutoModelForCausalLM.from_pretrained(
-            model_id, trust_remote_code=True, torch_dtype=torch.float16
-        )
-        device = "cuda" if torch.cuda.is_available() else "cpu"
-        _model = _model.to(device)
+        try:
+            from transformers import AutoProcessor, AutoModelForCausalLM
+            import torch
+            model_id = "microsoft/Florence-2-large"
+            _processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)
+            _model = AutoModelForCausalLM.from_pretrained(
+                model_id, trust_remote_code=True, torch_dtype=torch.float16
+            )
+            device = "cuda" if torch.cuda.is_available() else "cpu"
+            _model = _model.to(device)
+        except ImportError:
+            return None, None
     return _model, _processor
 
 def caption_medical_image(image_bytes: bytes) -> str:
     try:
+        from PIL import Image
+        import torch
         model, processor = _load_model()
+        if model is None or processor is None:
+            return "Medical image uploaded (Florence-2 not installed in this environment)."
         device = next(model.parameters()).device
         image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
         prompt = "<DETAILED_CAPTION>"
