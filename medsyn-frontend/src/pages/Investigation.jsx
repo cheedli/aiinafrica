@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import AgentFeed from '../components/investigation/AgentFeed'
 import ReportPanel from '../components/report/ReportPanel'
 import useAgentStream from '../hooks/useAgentStream'
-import ClayCard from '../components/ui/ClayCard'
 
 export default function Investigation() {
   const location = useLocation()
@@ -16,99 +15,90 @@ export default function Investigation() {
   useEffect(() => {
     if (started.current) return
     started.current = true
-
-    if (!text && !pdfs?.length && !images?.length) {
-      navigate('/')
-      return
-    }
-
+    if (!text && !pdfs?.length && !images?.length) { navigate('/'); return }
     const formData = new FormData()
     if (text) formData.append('text', text)
     if (pdfs) pdfs.forEach(f => formData.append('pdfs', f))
     if (images) images.forEach(f => formData.append('images', f))
-
     startAnalysis(formData)
   }, [])
 
   return (
-    <div className="relative h-screen flex flex-col overflow-hidden">
-      {/* Background blobs */}
-      <div className="blob w-96 h-96 bg-clay-lavender -top-20 -left-20 opacity-20" />
-      <div className="blob w-80 h-80 bg-clay-mint bottom-0 right-0 opacity-20" style={{ animationDelay: '3s' }} />
-
+    <div className="h-screen flex flex-col bg-surface overflow-hidden pt-14">
       {/* Top bar */}
-      <div className="relative z-10 px-4 pt-20 pb-3 flex-shrink-0">
-        <ClayCard className="px-5 py-3 flex items-center justify-between gap-3 flex-wrap" animate={false}>
-          <div className="flex items-center gap-3">
-            <motion.button
-              onClick={() => navigate('/')}
-              className="clay-pill bg-clay-peach text-sm font-bold cursor-pointer hover:bg-clay-rose transition-colors"
-              whileTap={{ scale: 0.95 }}
-            >
-              ← Back
-            </motion.button>
-            <span className="font-black text-sm">Manus Investigation</span>
-            {report.language && (
-              <span className="clay-pill bg-clay-mint text-xs">🌐 {report.language}</span>
+      <div className="bg-white border-b border-teal-100 px-6 py-3 flex items-center justify-between flex-shrink-0">
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => navigate('/')}
+            className="btn-ghost text-xs py-1.5 px-3"
+          >
+            Back
+          </button>
+          <div className="h-4 w-px bg-teal-100" />
+          <span className="text-sm font-semibold text-teal-900">Manus Investigation</span>
+          {report.language && (
+            <span className="badge bg-teal-100 text-teal-700">{report.language}</span>
+          )}
+        </div>
+        <div className="flex items-center gap-2">
+          <AnimatePresence mode="wait">
+            {isRunning && (
+              <motion.div
+                key="live"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                className="flex items-center gap-1.5"
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-xs font-medium text-emerald-700">Live</span>
+              </motion.div>
             )}
-          </div>
-          <div className="flex items-center gap-2">
-            <AnimatePresence mode="wait">
-              {isRunning && (
-                <motion.span
-                  key="live"
-                  initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}
-                  className="clay-pill bg-clay-yellow text-xs"
-                >
-                  ⚡ Live
-                </motion.span>
-              )}
-              {!isRunning && events.length > 0 && (
-                <motion.span
-                  key="done"
-                  initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}
-                  className="clay-pill bg-clay-mint text-xs"
-                >
-                  ✅ Complete
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </div>
-        </ClayCard>
+            {!isRunning && events.length > 0 && (
+              <motion.div
+                key="done"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                className="flex items-center gap-1.5"
+              >
+                <span className="w-2 h-2 rounded-full bg-teal-500" />
+                <span className="text-xs font-medium text-teal-700">Complete</span>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <span className="text-xs text-gray-400">{events.length} steps</span>
+        </div>
       </div>
 
-      {/* Error bar */}
+      {/* Error */}
       <AnimatePresence>
         {error && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="px-4 pb-2 flex-shrink-0"
+            initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }}
+            className="overflow-hidden flex-shrink-0"
           >
-            <ClayCard variant="peach" className="px-5 py-3 text-sm font-semibold" animate={false}>
-              ⚠️ {error}
-            </ClayCard>
+            <div className="bg-red-50 border-b border-red-200 px-6 py-2 text-sm text-red-700 font-medium">
+              {error}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* Split view */}
-      <div className="relative z-10 flex-1 grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-4 px-4 pb-4 min-h-0">
+      <div className="flex-1 grid grid-cols-1 md:grid-cols-[2fr_3fr] min-h-0">
+        {/* Left: Agent feed */}
         <motion.div
-          initial={{ opacity: 0, x: -24 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ type: 'spring', stiffness: 220, damping: 24 }}
-          className="clay-card bg-white/60 backdrop-blur-sm p-4 min-h-0 overflow-hidden flex flex-col"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="border-r border-teal-100 overflow-hidden flex flex-col bg-teal-950"
         >
           <AgentFeed events={events} isRunning={isRunning} />
         </motion.div>
 
+        {/* Right: Report */}
         <motion.div
-          initial={{ opacity: 0, x: 24 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ type: 'spring', stiffness: 220, damping: 24, delay: 0.08 }}
-          className="clay-card bg-white/60 backdrop-blur-sm p-4 min-h-0 overflow-hidden flex flex-col"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+          className="overflow-hidden flex flex-col bg-white"
         >
           <ReportPanel report={report} fullReport={fullReport} />
         </motion.div>

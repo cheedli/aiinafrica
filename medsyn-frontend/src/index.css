@@ -1,72 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #f0f4f3;
+    color: #0f2824;
+    min-height: 100vh;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
 @layer components {
-  .clay-card {
-    @apply rounded-clay bg-white border-[3px] border-black shadow-clay;
+  .card {
+    @apply bg-white rounded-xl border border-teal-100 shadow-sm;
   }
-  .clay-card-lavender {
-    @apply rounded-clay bg-clay-lavender border-[3px] border-black shadow-clay;
+  .card-dark {
+    @apply bg-teal-900 rounded-xl border border-teal-800;
   }
-  .clay-card-mint {
-    @apply rounded-clay bg-clay-mint border-[3px] border-black shadow-clay;
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium;
   }
-  .clay-card-peach {
-    @apply rounded-clay bg-clay-peach border-[3px] border-black shadow-clay;
+  .btn-primary {
+    @apply bg-teal-700 text-white font-semibold px-6 py-3 rounded-lg
+           hover:bg-teal-800 transition-colors duration-150
+           disabled:opacity-40 disabled:cursor-not-allowed
+           focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2;
   }
-  .clay-card-sky {
-    @apply rounded-clay bg-clay-sky border-[3px] border-black shadow-clay;
+  .btn-ghost {
+    @apply bg-transparent text-teal-700 font-medium px-4 py-2 rounded-lg
+           hover:bg-teal-50 transition-colors duration-150 border border-teal-200;
   }
-  .clay-card-rose {
-    @apply rounded-clay bg-clay-rose border-[3px] border-black shadow-clay;
+  .input-field {
+    @apply w-full rounded-lg border border-teal-200 bg-white px-4 py-3 text-sm
+           text-gray-800 placeholder:text-gray-400
+           focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent
+           transition-all duration-150;
   }
-  .clay-card-yellow {
-    @apply rounded-clay bg-clay-yellow border-[3px] border-black shadow-clay;
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-widest text-teal-600 mb-3;
   }
-  .clay-btn {
-    @apply rounded-clay border-[3px] border-black shadow-clay font-bold px-6 py-3
-           transition-all duration-150 active:translate-x-1 active:translate-y-1 active:shadow-none
-           hover:-translate-x-0.5 hover:-translate-y-0.5 cursor-pointer select-none;
+  .divider {
+    @apply border-t border-teal-100 my-4;
   }
-  .clay-btn-primary {
-    @apply clay-btn bg-clay-lavender text-black;
-  }
-  .clay-btn-peach {
-    @apply clay-btn bg-clay-peach text-black;
-  }
-  .clay-pill {
-    @apply rounded-full border-[2px] border-black px-3 py-0.5 text-sm font-semibold shadow-clay;
-  }
-}
-
-* { box-sizing: border-box; }
-
-body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background: linear-gradient(135deg, #e8e0ff 0%, #d4f5e9 50%, #ffe8d4 100%);
-  min-height: 100vh;
-  margin: 0;
-}
-
-.blob {
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(70px);
-  opacity: 0.3;
-  pointer-events: none;
-  z-index: 0;
-  animation: blobFloat 8s ease-in-out infinite alternate;
-}
-
-@keyframes blobFloat {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(30px, 20px) scale(1.06); }
 }
 
 /* Custom scrollbar */
-::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 10px; }
+::-webkit-scrollbar-thumb { background: #99c5be; border-radius: 10px; }
+
+/* Confidence bar animation */
+.confidence-fill {
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
