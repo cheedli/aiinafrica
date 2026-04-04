@@ -1,0 +1,7 @@
+.env
+**/.env
+medsyn-backend/__pycache__/
+medsyn-backend/.venv/
+medsyn-backend/venv/
+medsyn-frontend/node_modules/
+medsyn-frontend/dist/
