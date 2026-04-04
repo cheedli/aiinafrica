@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .clay-card {
+    @apply rounded-clay bg-white border-[3px] border-black shadow-clay;
+  }
+  .clay-card-lavender {
+    @apply rounded-clay bg-clay-lavender border-[3px] border-black shadow-clay;
+  }
+  .clay-card-mint {
+    @apply rounded-clay bg-clay-mint border-[3px] border-black shadow-clay;
+  }
+  .clay-card-peach {
+    @apply rounded-clay bg-clay-peach border-[3px] border-black shadow-clay;
+  }
+  .clay-card-sky {
+    @apply rounded-clay bg-clay-sky border-[3px] border-black shadow-clay;
+  }
+  .clay-card-rose {
+    @apply rounded-clay bg-clay-rose border-[3px] border-black shadow-clay;
+  }
+  .clay-card-yellow {
+    @apply rounded-clay bg-clay-yellow border-[3px] border-black shadow-clay;
+  }
+  .clay-btn {
+    @apply rounded-clay border-[3px] border-black shadow-clay font-bold px-6 py-3
+           transition-all duration-150 active:translate-x-1 active:translate-y-1 active:shadow-none
+           hover:-translate-x-0.5 hover:-translate-y-0.5 cursor-pointer select-none;
+  }
+  .clay-btn-primary {
+    @apply clay-btn bg-clay-lavender text-black;
+  }
+  .clay-btn-peach {
+    @apply clay-btn bg-clay-peach text-black;
+  }
+  .clay-pill {
+    @apply rounded-full border-[2px] border-black px-3 py-0.5 text-sm font-semibold shadow-clay;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(135deg, #e8e0ff 0%, #d4f5e9 50%, #ffe8d4 100%);
+  min-height: 100vh;
+  margin: 0;
+}
+
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+  animation: blobFloat 8s ease-in-out infinite alternate;
+}
+
+@keyframes blobFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, 20px) scale(1.06); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 10px; }
