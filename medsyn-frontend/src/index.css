@@ -8,7 +8,7 @@
   * { box-sizing: border-box; }
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    background-color: #f0f4f3;
+    background: linear-gradient(135deg, #e6f2ef 0%, #d4ece6 50%, #e8f4f0 100%);
     color: #0f2824;
     min-height: 100vh;
     margin: 0;
@@ -17,45 +17,93 @@
 }
 
 @layer components {
-  .card {
-    @apply bg-white rounded-xl border border-teal-100 shadow-sm;
+  /* Clay card variants */
+  .clay {
+    @apply rounded-2xl border-[2.5px] border-black/10 bg-white;
+    box-shadow: 4px 4px 0px 0px rgba(15,40,36,0.12), inset 0px 1px 0px rgba(255,255,255,0.8);
   }
-  .card-dark {
-    @apply bg-teal-900 rounded-xl border border-teal-800;
+  .clay-dark {
+    @apply rounded-2xl border-[2.5px] border-black/20 bg-teal-900;
+    box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.25), inset 0px 1px 0px rgba(255,255,255,0.06);
   }
-  .badge {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium;
+  .clay-teal {
+    @apply rounded-2xl border-[2.5px] border-teal-700/30 bg-teal-50;
+    box-shadow: 4px 4px 0px 0px rgba(15,92,83,0.15), inset 0px 1px 0px rgba(255,255,255,0.9);
   }
+  .clay-sage {
+    @apply rounded-2xl border-[2.5px] border-teal-600/20 bg-teal-100/60;
+    box-shadow: 4px 4px 0px 0px rgba(15,92,83,0.12), inset 0px 1px 0px rgba(255,255,255,0.9);
+  }
+  .clay-amber {
+    @apply rounded-2xl border-[2.5px] border-amber-400/30 bg-amber-50;
+    box-shadow: 4px 4px 0px 0px rgba(180,120,0,0.12), inset 0px 1px 0px rgba(255,255,255,0.9);
+  }
+  .clay-red {
+    @apply rounded-2xl border-[2.5px] border-red-300/40 bg-red-50;
+    box-shadow: 4px 4px 0px 0px rgba(180,0,0,0.10), inset 0px 1px 0px rgba(255,255,255,0.9);
+  }
+
+  /* Buttons */
   .btn-primary {
-    @apply bg-teal-700 text-white font-semibold px-6 py-3 rounded-lg
-           hover:bg-teal-800 transition-colors duration-150
-           disabled:opacity-40 disabled:cursor-not-allowed
+    @apply bg-teal-700 text-white font-semibold px-6 py-3 rounded-xl
+           border-[2.5px] border-teal-900/20
+           hover:bg-teal-800 hover:-translate-y-0.5
+           active:translate-y-0.5 active:shadow-none
+           transition-all duration-150
+           disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none
            focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2;
+    box-shadow: 3px 3px 0px 0px rgba(0,0,0,0.18), inset 0px 1px 0px rgba(255,255,255,0.15);
   }
   .btn-ghost {
-    @apply bg-transparent text-teal-700 font-medium px-4 py-2 rounded-lg
-           hover:bg-teal-50 transition-colors duration-150 border border-teal-200;
-  }
-  .input-field {
-    @apply w-full rounded-lg border border-teal-200 bg-white px-4 py-3 text-sm
-           text-gray-800 placeholder:text-gray-400
-           focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent
+    @apply bg-white text-teal-700 font-medium px-4 py-2 rounded-xl
+           border-[2px] border-teal-200
+           hover:bg-teal-50 hover:-translate-y-0.5
+           active:translate-y-0.5
            transition-all duration-150;
+    box-shadow: 2px 2px 0px 0px rgba(15,92,83,0.10);
   }
+
+  /* Input */
+  .input-field {
+    @apply w-full rounded-xl border-[2px] border-teal-200/80 bg-white/80 px-4 py-3 text-sm
+           text-gray-800 placeholder:text-gray-400
+           focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-teal-400
+           transition-all duration-150;
+    box-shadow: inset 2px 2px 4px rgba(15,40,36,0.06);
+  }
+
+  /* Badge / pill */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-lg text-xs font-semibold
+           border border-black/10;
+    box-shadow: 1px 1px 0px rgba(0,0,0,0.08);
+  }
+
+  /* Section label */
   .section-label {
     @apply text-xs font-semibold uppercase tracking-widest text-teal-600 mb-3;
   }
   .divider {
-    @apply border-t border-teal-100 my-4;
+    @apply border-t border-teal-100/80 my-4;
   }
 }
 
-/* Custom scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #99c5be; border-radius: 10px; }
+::-webkit-scrollbar-thumb { background: #6ec4b8; border-radius: 10px; }
 
-/* Confidence bar animation */
-.confidence-fill {
-  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+/* Floating background blobs */
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
+  animation: blobDrift 10s ease-in-out infinite alternate;
+}
+@keyframes blobDrift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(24px, 16px) scale(1.04); }
 }
