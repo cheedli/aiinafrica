@@ -4,7 +4,7 @@
 
 Built for the [AI4SDG3 Challenge](https://gitexafrica.com) · GITEX Africa 2026 · SDG 3: Good Health & Well-Being
 
-**Team:** MedSyn · **University:** ESPRIT · **Member:** Chedhly Ghorel
+**Team:** MedSyn · **University:** ESPRIT · **Member:** Chedhly Ghorbel
 
 ---
 
