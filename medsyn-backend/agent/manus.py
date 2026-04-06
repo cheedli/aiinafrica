@@ -1,6 +1,7 @@
 import asyncio
 import json
 import os
+import sys
 import httpx
 from typing import AsyncGenerator
 from .reasoning import synthesize_report
@@ -13,6 +14,10 @@ def _sse(type: StepType, message: str, data: dict = None) -> str:
     event = SSEEvent(type=type, message=message, data=data)
     return f"data: {event.model_dump_json()}\n\n"
 
+def _heartbeat() -> str:
+    """Keep SSE connection alive during long Manus runs."""
+    return ": heartbeat\n\n"
+
 def _headers() -> dict:
     return {
         "x-manus-api-key": os.getenv("MANUS_API_KEY", ""),
@@ -22,12 +27,18 @@ def _headers() -> dict:
 def _build_manus_prompt(context: str) -> str:
     return f"""You are a clinical diagnostic AI agent investigating an undiagnosed patient case in Africa.
 
-Autonomously investigate this case by:
-1. Identifying key symptoms and clinical features
-2. Searching PubMed for relevant medical literature
-3. Checking Orphanet for rare disease profiles matching the presentation
-4. Considering WHO regional epidemiological data for Africa
-5. Producing a ranked differential diagnosis (3-5 conditions)
+CRITICAL INSTRUCTIONS:
+- Work ONLY with the patient data provided below. Do NOT ask for more information.
+- If some fields are missing, use what you have and reason from it.
+- Never request clarification. Never pause. Investigate immediately and completely.
+- Use all available data: demographics, region, symptoms, history, labs, notes.
+
+Your investigation steps:
+1. Extract every clinical clue from the patient data below
+2. Search PubMed for relevant literature matching the symptoms and demographics
+3. Check Orphanet for rare diseases matching this presentation
+4. Consider WHO epidemiological data for the patient's region in Africa
+5. Produce a ranked differential diagnosis (3-5 conditions)
 
 Detect the language of the input (Arabic/French/English) and respond in the SAME language.
 
@@ -68,7 +79,7 @@ Return your final output as a JSON code block with this exact structure:
 }}
 ```
 
-PATIENT CASE:
+PATIENT CASE — investigate this now, do not ask for more data:
 {context}"""
 
 
@@ -94,6 +105,7 @@ async def _get_task_status(task_id: str) -> str:
             params={"task_id": task_id}
         )
         data = resp.json()
+        print(f"[manus] task.detail raw: {json.dumps(data)[:500]}", file=sys.stderr, flush=True)
         return data.get("task", {}).get("status", "running")
 
 
@@ -108,6 +120,22 @@ async def _list_messages(task_id: str, cursor: str = None) -> dict:
             params=params
         )
         return resp.json()
+
+
+async def _send_tool_ping(task_id: str) -> None:
+    """Ask Manus to report tools used so far — without stopping its work."""
+    async with httpx.AsyncClient(timeout=15.0) as client:
+        await client.post(
+            f"{MANUS_BASE}/task.sendMessage",
+            headers=_headers(),
+            json={"task_id": task_id, "message": {"content": (
+                "Do NOT pause or stop your investigation. Continue working immediately after this response.\n\n"
+                "While continuing, return ONLY a raw JSON array (no markdown, no explanation) listing every tool you have called so far:\n"
+                '[{"tool":"pubmed_search","query":"...","result":"one line summary"},{"tool":"browser","url":"...","result":"one line summary"}]\n\n'
+                "Valid tool names: pubmed_search, orphanet_lookup, web_search, browser, who_data, icd_lookup. "
+                "Then immediately resume your investigation."
+            )}}
+        )
 
 
 def _parse_report_from_text(text: str) -> dict | None:
@@ -137,6 +165,31 @@ def _parse_report_from_text(text: str) -> dict | None:
         return None
 
 
+def _parse_tool_ping(text: str) -> list | None:
+    """Parse a JSON array of tool calls from a Manus ping response."""
+    text = text.strip()
+    # Strip markdown fences if present
+    for fence in ("```json", "```"):
+        if fence in text:
+            try:
+                start = text.index(fence) + len(fence)
+                end = text.index("```", start)
+                text = text[start:end].strip()
+                break
+            except Exception:
+                pass
+    # Must start with [ to be an array
+    try:
+        start = text.index("[")
+        end = text.rindex("]") + 1
+        data = json.loads(text[start:end])
+        if isinstance(data, list) and data and isinstance(data[0], dict) and "tool" in data[0]:
+            return data
+    except Exception:
+        pass
+    return None
+
+
 async def run_manus(context: str) -> AsyncGenerator[str, None]:
     # Step 1: Create Manus task
     yield _sse(StepType.STEP, "Dispatching case to Manus autonomous agent...")
@@ -146,18 +199,38 @@ async def run_manus(context: str) -> AsyncGenerator[str, None]:
         yield _sse(StepType.ERROR, f"Failed to start Manus: {str(e)}")
         return
 
-    yield _sse(StepType.STEP, f"Manus task created. Investigation in progress...")
-    yield _sse(StepType.DATA, "Task started", {"task_id": task_id})
+    task_url = f"https://manus.im/app/{task_id}"
+    yield _sse(StepType.STEP, "Manus task created. Investigation in progress...")
+    yield _sse(StepType.DATA, "Task started", {"task_id": task_id, "task_url": task_url})
 
-    # Step 2: Poll for completion using task.detail
+    # Step 2: Poll for completion
     seen_msg_ids = set()
     final_content = None
     poll_count = 0
-    max_polls = 90  # 6 minutes at 4s intervals
+    max_polls = 150  # 10 minutes at 4s intervals
+    heartbeat_counter = 0
+    ping_counter = 0        # ping every ~30s (every 7-8 polls at 4s)
+    seen_tools: set = set() # deduplicate tool calls across pings
 
     while poll_count < max_polls:
         await asyncio.sleep(POLL_INTERVAL)
         poll_count += 1
+        heartbeat_counter += 1
+        ping_counter += 1
+
+        # Send heartbeat every 2 polls (~8s) to keep SSE connection alive
+        if heartbeat_counter >= 2:
+            yield _heartbeat()
+            heartbeat_counter = 0
+
+        # Ping Manus every 30s starting from 30s — first ping at poll 8 (~32s), then every 8 polls
+        if ping_counter >= 8:
+            ping_counter = 0
+            try:
+                await _send_tool_ping(task_id)
+            except Exception:
+                pass
+
 
         # Check status via task.detail
         try:
@@ -165,36 +238,58 @@ async def run_manus(context: str) -> AsyncGenerator[str, None]:
         except Exception:
             continue
 
-        # Also fetch messages to stream live progress
+        # Fetch ALL messages using no cursor — track seen by id
         try:
             msg_resp = await _list_messages(task_id)
             messages = msg_resp.get("messages", [])
 
-            # Messages come in reverse chronological order — process all
+            print(f"[manus] poll {poll_count}: status={status} msgs={len(messages)}", file=sys.stderr, flush=True)
+
             for msg in reversed(messages):
                 msg_id = msg.get("id", "")
                 if msg_id in seen_msg_ids:
                     continue
                 seen_msg_ids.add(msg_id)
+                print(f"[manus] new msg FULL: {json.dumps(msg)}", file=sys.stderr, flush=True)
 
                 msg_type = msg.get("type", "")
 
                 if msg_type == "status_update":
                     agent_status = msg.get("status_update", {}).get("agent_status", "")
                     brief = msg.get("status_update", {}).get("brief", "")
-                    if brief and agent_status == "running":
-                        yield _sse(StepType.STEP, f"Manus: {brief}")
+                    if brief and agent_status not in ("stopped",):
+                        yield _sse(StepType.STEP, brief)
+                    elif agent_status and agent_status not in ("stopped",):
+                        yield _sse(StepType.STEP, agent_status)
 
                 elif msg_type == "assistant_message":
                     content = msg.get("assistant_message", {}).get("content", "")
                     attachments = msg.get("assistant_message", {}).get("attachments", [])
 
                     if content:
-                        snippet = content[:150].replace("\n", " ").strip()
-                        yield _sse(StepType.STEP, f"Manus: {snippet}{'...' if len(content) > 150 else ''}")
-                        final_content = content  # keep updating — last is final
+                        is_report = "```json" in content or (len(content) > 500 and "differentials" in content)
 
-                    # Download markdown attachment if present
+                        # Try to parse as tool ping response (JSON array of tool calls)
+                        tool_calls = _parse_tool_ping(content)
+                        if tool_calls and not is_report:
+                            for tc in tool_calls:
+                                tool_key = f"{tc.get('tool')}:{tc.get('query','')}{tc.get('url','')}"
+                                if tool_key not in seen_tools:
+                                    seen_tools.add(tool_key)
+                                    yield _sse(StepType.TOOL, tc.get("tool", "search"), {
+                                        "tool": tc.get("tool", "search"),
+                                        "query": tc.get("query") or tc.get("url", ""),
+                                        "result": tc.get("result", "")
+                                    })
+                        elif is_report:
+                            final_content = content
+                            yield _sse(StepType.STEP, "Final diagnostic report received. Parsing...")
+                        else:
+                            # Stream full content as-is, not truncated
+                            yield _sse(StepType.STEP, content.strip())
+                            if not final_content:
+                                final_content = content
+
                     for att in attachments:
                         if att.get("content_type") == "text/markdown" and att.get("url"):
                             try:
@@ -202,21 +297,40 @@ async def run_manus(context: str) -> AsyncGenerator[str, None]:
                                     file_resp = await client.get(att["url"])
                                     if file_resp.status_code == 200:
                                         final_content = file_resp.text
-                                        yield _sse(StepType.STEP, "Manus: Downloaded detailed clinical report...")
+                                        yield _sse(StepType.STEP, "Downloaded detailed clinical report...")
                             except Exception:
                                 pass
 
-        except Exception:
-            pass
+                elif msg_type == "tool_use":
+                    # Show tool calls so user sees what Manus is doing
+                    tool_name = msg.get("tool_use", {}).get("name", "")
+                    tool_input = msg.get("tool_use", {}).get("input", {})
+                    if tool_name:
+                        label = tool_name.replace("_", " ").title()
+                        detail = ""
+                        if "query" in tool_input:
+                            detail = f": {tool_input['query']}"
+                        elif "url" in tool_input:
+                            detail = f": {tool_input['url']}"
+                        elif "command" in tool_input:
+                            detail = f": {str(tool_input['command'])[:80]}"
+                        yield _sse(StepType.STEP, f"{label}{detail}")
 
-        if status == "stopped":
+        except Exception as ex:
+            print(f"[manus] message fetch error: {ex}", file=sys.stderr, flush=True)
+
+        # Early exit if we already have the structured report
+        if final_content and ("```json" in final_content or (len(final_content) > 500 and "differentials" in final_content)):
+            break
+
+        if status in ("stopped", "completed", "finished", "done"):
             break
         elif status == "error":
             yield _sse(StepType.ERROR, "Manus encountered an error during investigation.")
             return
 
     if poll_count >= max_polls:
-        yield _sse(StepType.ERROR, "Investigation timed out after 6 minutes.")
+        yield _sse(StepType.ERROR, "Investigation timed out after 10 minutes.")
         return
 
     yield _sse(StepType.STEP, "Manus investigation complete. Parsing clinical report...")
@@ -290,47 +404,9 @@ async def run_manus(context: str) -> AsyncGenerator[str, None]:
         yield _sse(StepType.DONE, "Investigation complete.", {"report": full_report.model_dump()})
 
     else:
-        # Manus responded but not in structured JSON — use Gemini to structure it
-        yield _sse(StepType.STEP, "Structuring Manus output through Gemini reasoning module...")
-        try:
-            report_data = await synthesize_report(
-                context=context,
-                pubmed_evidence=[],
-                orphanet_data=[],
-                who_context=final_content or "Manus investigation complete.",
-                language="English"
-            )
-            differentials = []
-            for d in report_data.get("differentials", []):
-                try:
-                    differentials.append(Diagnosis(
-                        rank=int(d.get("rank", 0)),
-                        name=d.get("name", "Unknown"),
-                        confidence=min(max(float(d.get("confidence", 0.5)), 0.0), 1.0),
-                        orpha_code=d.get("orpha_code"),
-                        orphanet_url=d.get("orphanet_url"),
-                        icd11_code=d.get("icd11_code"),
-                        reasoning=d.get("reasoning", ""),
-                        regional_prevalence=d.get("regional_prevalence")
-                    ))
-                except Exception:
-                    continue
-
-            ap = ActionPlan(
-                tests_to_order=report_data.get("tests_to_order", []),
-                specialists_to_consult=report_data.get("specialists_to_consult", []),
-                hypotheses_to_rule_out=report_data.get("hypotheses_to_rule_out", [])
-            )
-            full_report = ClinicalReport(
-                patient_summary=report_data.get("patient_summary", ""),
-                detected_language="English",
-                differentials=differentials,
-                evidence=[],
-                action_plan=ap,
-                who_context=report_data.get("who_context")
-            )
-            yield _sse(StepType.SECTION, "differentials", {"differentials": [d.model_dump() for d in differentials]})
-            yield _sse(StepType.SECTION, "action_plan", {"action_plan": ap.model_dump()})
-            yield _sse(StepType.DONE, "Investigation complete.", {"report": full_report.model_dump()})
-        except Exception as e:
-            yield _sse(StepType.ERROR, f"Could not parse Manus output: {str(e)}")
+        # Manus finished but didn't return structured JSON — show what we have, don't burn Gemini quota
+        if final_content:
+            yield _sse(StepType.STEP, "Manus investigation complete. Awaiting structured report — Manus may still be finalizing.")
+            yield _sse(StepType.ERROR, "Manus did not return a structured JSON report this run. Try re-running the investigation, or view the full output at the Manus link above.")
+        else:
+            yield _sse(StepType.ERROR, "Investigation ended without output. Manus may have timed out or been rate-limited. Please retry.")

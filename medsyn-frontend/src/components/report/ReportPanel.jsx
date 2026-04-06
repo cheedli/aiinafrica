@@ -4,6 +4,11 @@ import EvidenceCard from './EvidenceCard'
 import ActionPlanCard from './ActionPlanCard'
 import ExportButton from './ExportButton'
 
+const sectionVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }
+}
+
 export default function ReportPanel({ report, fullReport }) {
   const hasContent = report.differentials?.length || report.evidence?.length || report.actionPlan
 
@@ -16,7 +21,12 @@ export default function ReportPanel({ report, fullReport }) {
             <span className="badge bg-teal-50 text-teal-600 border-teal-100">{report.language}</span>
           )}
           {fullReport && (
-            <span className="badge bg-emerald-50 text-emerald-600 border-emerald-100">Complete</span>
+            <motion.span
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="badge bg-emerald-50 text-emerald-600 border-emerald-100">
+              Complete
+            </motion.span>
           )}
         </div>
       </div>
@@ -36,7 +46,7 @@ export default function ReportPanel({ report, fullReport }) {
 
         <AnimatePresence>
           {report.differentials?.length > 0 && (
-            <motion.div key="diff" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <motion.div key="diff" variants={sectionVariants} initial="hidden" animate="visible">
               <p className="section-label">Differential Diagnoses</p>
               <div className="flex flex-col gap-3">
                 {report.differentials.map((d, i) => <DiagnosisCard key={i} diagnosis={d} index={i} />)}
@@ -45,7 +55,7 @@ export default function ReportPanel({ report, fullReport }) {
           )}
 
           {report.evidence?.length > 0 && (
-            <motion.div key="ev" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <motion.div key="ev" variants={sectionVariants} initial="hidden" animate="visible">
               <div className="divider" />
               <p className="section-label">Supporting Evidence — PubMed</p>
               <div className="rounded-2xl border-[2px] border-teal-100 bg-white overflow-hidden"
@@ -56,7 +66,7 @@ export default function ReportPanel({ report, fullReport }) {
           )}
 
           {report.actionPlan && (
-            <motion.div key="ap" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <motion.div key="ap" variants={sectionVariants} initial="hidden" animate="visible">
               <div className="divider" />
               <p className="section-label">Action Plan</p>
               <div className="rounded-2xl border-[2px] border-teal-100 bg-white p-4"
@@ -67,7 +77,7 @@ export default function ReportPanel({ report, fullReport }) {
           )}
 
           {report.whoContext && (
-            <motion.div key="who" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <motion.div key="who" variants={sectionVariants} initial="hidden" animate="visible">
               <div className="divider" />
               <p className="section-label">WHO Regional Context</p>
               <div className="clay-teal p-4">
@@ -77,7 +87,7 @@ export default function ReportPanel({ report, fullReport }) {
           )}
 
           {fullReport && (
-            <motion.div key="export" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <motion.div key="export" variants={sectionVariants} initial="hidden" animate="visible">
               <div className="divider" />
               <ExportButton report={fullReport} />
               <p className="text-xs text-gray-400 text-center mt-2">

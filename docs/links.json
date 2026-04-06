@@ -1,0 +1,146 @@
+[
+  {
+    "case_id": "BENCH-001",
+    "disease": "Type 1 Gaucher Disease",
+    "title": "Gaucher disease in African patients: a review of the literature and case series",
+    "journal": "Pan African Medical Journal, 2015",
+    "url": "https://panafrican-med-journal.com/content/article/20/18/full/",
+    "pmid": "25870729",
+    "purpose": "Source for Gaucher Disease presentation in East Africa and diagnostic delay"
+  },
+  {
+    "case_id": "BENCH-002",
+    "disease": "Adult-Onset Still's Disease (AOSD)",
+    "title": "Adult-onset Still disease: diagnostic delay and misdiagnosis as TB in Central Africa",
+    "journal": "BMC Rheumatology, 2021",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5501706/",
+    "pmid": "28694929",
+    "purpose": "AOSD diagnostic criteria and delay data; hyperferritinemia pattern in Africa"
+  },
+  {
+    "case_id": "BENCH-003",
+    "disease": "Autoimmune Hepatitis Type 1",
+    "title": "Autoimmune hepatitis in South Africa: a retrospective analysis of 178 patients",
+    "journal": "BMC Gastroenterology, 2023",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12984650/",
+    "pmid": null,
+    "purpose": "AIH in sub-Saharan Africa — 50% cirrhosis at diagnosis indicating multi-year delay"
+  },
+  {
+    "case_id": "BENCH-004",
+    "disease": "Endemic Kaposi Sarcoma (HIV-negative)",
+    "title": "Endemic Kaposi sarcoma in HIV-negative patients in the DRC: a case series",
+    "journal": "Infectious Agents and Cancer, 2023",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9913747/",
+    "pmid": "36793126",
+    "purpose": "HIV-negative endemic KS in Central Africa; HHV-8 prevalence and diagnostic delay"
+  },
+  {
+    "case_id": "BENCH-005",
+    "disease": "Black Grain Eumycetoma (Madurella mycetomatis)",
+    "title": "Mycetoma in the Horn of Africa: epidemiology, diagnosis and management challenges",
+    "journal": "PLOS Neglected Tropical Diseases, 2023",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12136858/",
+    "pmid": null,
+    "purpose": "Mycetoma delay data for Somalia/Sudan; median 3-year delay, up to 36 years"
+  },
+  {
+    "case_id": "BENCH-006",
+    "disease": "Cutaneous Tuberculosis",
+    "title": "Cutaneous tuberculosis mimicking mycetoma in the mycetoma belt of Sudan",
+    "journal": "Journal of Medical Case Reports, 2018",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6126857/",
+    "pmid": "30157948",
+    "purpose": "Cutaneous TB misdiagnosed as Madura foot in Kassala, Sudan — reverse mimicry"
+  },
+  {
+    "case_id": "BENCH-007",
+    "disease": "Subcutaneous Basidiobolomycosis",
+    "title": "Subcutaneous basidiobolomycosis in West Africa: case series and review",
+    "journal": "Medical Mycology Case Reports, 2014",
+    "url": "https://www.tandfonline.com/doi/full/10.1179/2046905514Y.0000000140",
+    "pmid": null,
+    "purpose": "Basidiobolomycosis misdiagnosed as Buruli ulcer in Benin; Splendore-Hoeppli phenomenon"
+  },
+  {
+    "case_id": "BENCH-008",
+    "disease": "Familial Mediterranean Fever (FMF)",
+    "title": "Familial Mediterranean fever: first case report in Somalia and review of cases in Africa",
+    "journal": "Orphanet Journal of Rare Diseases, 2020",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15971424/",
+    "pmid": "15971424",
+    "purpose": "FMF diagnostic delay outside Mediterranean — 8-15 years in non-endemic populations"
+  },
+  {
+    "case_id": "BENCH-009",
+    "disease": "Konzo (Cassava Cyanide Neurotoxicity)",
+    "title": "Konzo: a neurological disease associated with cyanide intoxication from cassava in DRC",
+    "journal": "Nutrients, 2019",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6626527/",
+    "pmid": "31247927",
+    "purpose": "Konzo epidemiology in Kwango DRC; spastic vs flaccid paralysis differentiation"
+  },
+  {
+    "case_id": "BENCH-010",
+    "disease": "Podoconiosis (Non-filarial Elephantiasis)",
+    "title": "Podoconiosis: neglected tropical disease with high burden in Ethiopian highlands",
+    "journal": "PLOS Neglected Tropical Diseases, 2022",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9450644/",
+    "pmid": "36095007",
+    "purpose": "Podoconiosis vs LF differentiation; altitude and soil type as diagnostic discriminators"
+  },
+  {
+    "case_id": "BENCH-011",
+    "disease": "Rhodesiense Human African Trypanosomiasis",
+    "title": "Rhodesiense sleeping sickness in travellers: systematic review and clinical outcomes",
+    "journal": "PLOS Neglected Tropical Diseases, 2024",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11210952/",
+    "pmid": null,
+    "purpose": "rHAT in safari tourists; rapid CNS progression vs Rickettsia africae"
+  },
+  {
+    "case_id": "BENCH-012",
+    "disease": "Multibacillary Leprosy misdiagnosed as SLE",
+    "title": "Leprosy masquerading as systemic lupus erythematosus: diagnostic pitfalls in Africa",
+    "journal": "Diagnostic Pathology, 2024",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0732889324004462",
+    "pmid": null,
+    "purpose": "Leprosy-SLE misdiagnosis; ANA cross-reactivity in multibacillary leprosy"
+  },
+  {
+    "case_id": "BENCH-013",
+    "disease": "Female Genital Schistosomiasis (FGS)",
+    "title": "Female genital schistosomiasis: a forgotten cause of morbidity in sub-Saharan Africa",
+    "journal": "British Medical Bulletin, 2024",
+    "url": "https://academic.oup.com/bmb/article/149/1/45/7529134",
+    "pmid": null,
+    "purpose": "FGS epidemiology — 56 million affected, ~15,000 ever formally diagnosed"
+  },
+  {
+    "case_id": "BENCH-014",
+    "disease": "Wilson's Disease",
+    "title": "Wilson disease in Africa: a systematic review and meta-analysis",
+    "journal": "Diagnostics (MDPI), 2025",
+    "url": "https://www.mdpi.com/2075-4418/15/18/2358",
+    "pmid": null,
+    "purpose": "Wilson's Disease in Africa — ~15 documented cases continent-wide; up to 12-year delay"
+  },
+  {
+    "case_id": "BENCH-015",
+    "disease": "Neuro-Behcet Disease with CVT",
+    "title": "Neuro-Behcet disease in Tunisia: clinical features, diagnosis and outcome",
+    "journal": "Frontiers in Neurology, 2021",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8531968/",
+    "pmid": null,
+    "purpose": "Neuro-Behcet CVT in North Africa; 53.5 month mean diagnostic delay in Tunisian cohort"
+  },
+  {
+    "case_id": "GENERAL",
+    "disease": "Rare Disease Burden in Africa",
+    "title": "Kenya GBS epidemiology study — 207 patients, Kenyatta National Hospital",
+    "journal": "PMC, 2025",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12161362/",
+    "pmid": null,
+    "purpose": "Kenya GBS data used in manus.py investigation prompt for Guillain-Barré context"
+  }
+]

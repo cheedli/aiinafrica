@@ -60,7 +60,7 @@ async def synthesize_report(context: str, pubmed_evidence: list, orphanet_data: 
         language=language
     )
     response = client.models.generate_content(
-        model="gemini-2.0-flash",
+        model="models/gemini-2.0-flash",
         contents=prompt,
     )
     return json.loads(_clean_json(response.text))

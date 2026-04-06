@@ -4,6 +4,7 @@ from enum import Enum
 
 class StepType(str, Enum):
     STEP = "step"
+    TOOL = "tool"
     DATA = "data"
     SECTION = "section"
     DONE = "done"

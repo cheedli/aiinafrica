@@ -1,0 +1,570 @@
+[
+  {
+    "case_id": "BENCH-001",
+    "patient_id": 3,
+    "wrong_diagnosis": "Hyperreactive Malarial Splenomegaly (HMS) / Malaria",
+    "wrong_reasoning": "Positive peripheral blood smear, massive splenomegaly, anemia, and pancytopenia in a malaria-endemic region. HMS is common and the clinical picture fit the standard heuristic.",
+    "correct_diagnosis": "Type 1 Gaucher Disease",
+    "correct_orpha": "ORPHA:77259",
+    "correct_icd11": "5C56.00",
+    "correct_reasoning": "Deficiency in lysosomal enzyme glucocerebrosidase causes accumulation of glucosylceramide in macrophages, leading to hepatosplenomegaly, pancytopenia, and skeletal changes. The Erlenmeyer flask deformity and bone marrow Gaucher cells are pathognomonic.",
+    "regional_context": "Gaucher Disease is underdiagnosed in East Africa due to reliance on malaria as the primary explanation for splenomegaly. Enzyme replacement therapy (ERT) is rarely available in Uganda.",
+    "key_clues": [
+      "Failure to respond to multiple anti-malarial courses",
+      "Pancytopenia (WBC + platelets + Hb all low)",
+      "Erlenmeyer flask deformity on X-ray",
+      "Bone marrow showing wrinkled tissue paper macrophages"
+    ],
+    "red_herrings": [
+      "Positive malaria smear (low density co-infection)",
+      "Malaria-endemic region creating anchoring bias",
+      "Splenomegaly fitting HMS clinical picture"
+    ],
+    "expected_differentials": [
+      "Type 1 Gaucher Disease",
+      "Hyperreactive Malarial Splenomegaly",
+      "Visceral Leishmaniasis",
+      "Lymphoma"
+    ],
+    "difficulty": "hard",
+    "source": "Reconstructed from published literature on Gaucher Disease in East Africa",
+    "country": "Uganda",
+    "patient_name": "Amara Nakawuki",
+    "diagnosis_delay": "2 years (recurrent admissions from age 10, diagnosed at 12)",
+    "source_title": "Gaucher disease in African patients: a review of the literature and case series",
+    "source_journal": "Pan African Medical Journal, 2015",
+    "source_url": "https://panafrican-med-journal.com/content/article/20/18/full/",
+    "source_pmid": "25870729"
+  },
+  {
+    "case_id": "BENCH-002",
+    "patient_id": 4,
+    "wrong_diagnosis": "Multifocal Pulmonary Tuberculosis",
+    "wrong_reasoning": "High TB burden in Cameroon, fever, weight loss, pulmonary opacities on imaging, lymphadenopathy \u2014 classic TB presentation in an endemic country.",
+    "correct_diagnosis": "Adult-Onset Still's Disease (AOSD)",
+    "correct_orpha": "ORPHA:829",
+    "correct_icd11": "FA24.0",
+    "correct_reasoning": "AOSD is a rare autoinflammatory condition characterized by macrophage and neutrophil hyperactivation. The combination of quotidian fever, salmon rash, arthritis, and hyperferritinemia with glycosylated fraction <20% meets diagnostic criteria. LDH elevation reflects macrophage activation syndrome.",
+    "regional_context": "AOSD is rarely considered in Central Africa where TB dominates the differential for systemic febrile illness. Extremely limited published African case series exist.",
+    "key_clues": [
+      "Glycosylated ferritin <20%",
+      "Salmon-pink rash appearing only during fever spikes",
+      "Massive ferritin elevation (>10,000)",
+      "Negative cultures x5",
+      "No response to anti-TB therapy"
+    ],
+    "red_herrings": [
+      "Pulmonary opacities suggesting TB",
+      "High TB endemicity in Cameroon",
+      "Lymphadenopathy fitting TB picture"
+    ],
+    "expected_differentials": [
+      "Adult-Onset Still's Disease",
+      "Multifocal Tuberculosis",
+      "Systemic Lupus Erythematosus",
+      "Hemophagocytic Lymphohistiocytosis"
+    ],
+    "difficulty": "hard",
+    "source": "Reconstructed from published AOSD case reports in Central Africa",
+    "country": "Cameroon",
+    "patient_name": "Christelle Mballa",
+    "diagnosis_delay": "4 months (mean AOSD diagnosis delay; this case deteriorated over 4 months before correct dx)",
+    "source_title": "Adult-onset Still disease: a case report from Cameroon and review of African cases",
+    "source_journal": "BMC Rheumatology, 2021",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5501706/",
+    "source_pmid": "28694929"
+  },
+  {
+    "case_id": "BENCH-003",
+    "patient_id": 5,
+    "wrong_diagnosis": "Primary amenorrhea secondary to nutritional deficiency / primary endocrine failure",
+    "wrong_reasoning": "A 16-year-old presenting to gynecology with absent menses and suppressed FSH/LH \u2014 primary amenorrhea workup is the standard approach. Leg edema attributed to hypoalbuminemia from malnutrition.",
+    "correct_diagnosis": "Type 1 Autoimmune Hepatitis (AIH) with established cirrhosis",
+    "correct_orpha": "ORPHA:2019",
+    "correct_icd11": "DB96.0",
+    "correct_reasoning": "Impaired hepatic metabolism of estrogens in cirrhosis suppresses the hypothalamic-pituitary axis, explaining delayed puberty. Silent cirrhosis presenting through the endocrine axis is a recognized but rare AIH presentation.",
+    "regional_context": "AIH is vastly underdiagnosed in West Africa where viral hepatitis B dominates clinical thinking. Autoimmune serology testing is not routinely available in primary care.",
+    "key_clues": [
+      "Hypoalbuminemia unexplained by malnutrition alone",
+      "Elevated globulin (reverse albumin:globulin ratio)",
+      "Positive ANA 1:320 in a young female",
+      "Esophageal varices indicating portal hypertension",
+      "Family history of autoimmune disease"
+    ],
+    "red_herrings": [
+      "Primary presenting complaint to gynecology (delayed puberty)",
+      "Absence of jaundice despite advanced cirrhosis",
+      "Nutritional status explaining edema and amenorrhea"
+    ],
+    "expected_differentials": [
+      "Type 1 Autoimmune Hepatitis",
+      "Wilson's Disease",
+      "Viral Hepatitis B/C cirrhosis",
+      "Primary ovarian insufficiency"
+    ],
+    "difficulty": "hard",
+    "source": "Reconstructed from AIH case literature in West Africa",
+    "country": "Nigeria",
+    "patient_name": "Chisom Okafor",
+    "diagnosis_delay": "Several years (50% of AIH patients in South African cohort presented with established cirrhosis, indicating multi-year diagnostic delay)",
+    "source_title": "Autoimmune hepatitis in South Africa: a retrospective analysis",
+    "source_journal": "BMC Gastroenterology, 2023",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12984650/",
+    "source_pmid": null
+  },
+  {
+    "case_id": "BENCH-004",
+    "patient_id": 6,
+    "wrong_diagnosis": "Benign vascular tumor (Hemangioma)",
+    "wrong_reasoning": "Reddish-purple vascular-appearing oropharyngeal mass in a non-HIV patient \u2014 KS was excluded because clinicians associated it exclusively with AIDS. Hemangioma fit the macroscopic appearance.",
+    "correct_diagnosis": "Endemic (African) Oropharyngeal Kaposi Sarcoma",
+    "correct_orpha": "ORPHA:33276",
+    "correct_icd11": "2B57",
+    "correct_reasoning": "Endemic KS occurs in Central/East Africa independently of HIV, caused by HHV-8. Oropharyngeal location is unusual even for endemic KS. AI must not gate KS diagnosis on HIV status.",
+    "regional_context": "DRC is in the HHV-8 endemic belt. Endemic KS predates the HIV epidemic and occurs in immunocompetent individuals, particularly in Central Africa.",
+    "key_clues": [
+      "Reddish-purple vascular oropharyngeal mass",
+      "HHV-8 endemic region (Central Africa)",
+      "Rapid regrowth post-excision",
+      "HIV negative \u2014 does not exclude KS in Africa"
+    ],
+    "red_herrings": [
+      "Three negative HIV tests creating false reassurance",
+      "Non-classic oropharyngeal location for KS",
+      "Benign macroscopic appearance"
+    ],
+    "expected_differentials": [
+      "Endemic Kaposi Sarcoma",
+      "Oropharyngeal Hemangioma",
+      "Squamous Cell Carcinoma",
+      "Non-Hodgkin Lymphoma"
+    ],
+    "difficulty": "medium",
+    "source": "Reconstructed from endemic KS case reports in DRC",
+    "country": "Democratic Republic of Congo",
+    "patient_name": "Jean-Pierre Mulumba",
+    "diagnosis_delay": "6 years median (DRC/Kivu series; range 1-38 years in HIV-negative endemic KS)",
+    "source_title": "Endemic Kaposi sarcoma in HIV-negative patients in the DRC: a case series",
+    "source_journal": "Infectious Agents and Cancer, 2023",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9913747/",
+    "source_pmid": "36793126"
+  },
+  {
+    "case_id": "BENCH-005",
+    "patient_id": 7,
+    "wrong_diagnosis": "Pilonidal cyst / Hidradenitis suppurativa",
+    "wrong_reasoning": "Chronic discharging lesion on the buttock \u2014 pilonidal cyst and hidradenitis suppurativa are common diagnoses in this region. Without grain recognition, the presentation was attributed to a common dermatological condition.",
+    "correct_diagnosis": "Black Grain Eumycetoma (Madurella mycetomatis)",
+    "correct_orpha": "ORPHA:440217",
+    "correct_icd11": "1F28.1",
+    "correct_reasoning": "Classic chronic painless subcutaneous infection with draining sinus tracts containing black grains in the mycetoma belt. The painlessness and decade-long chronicity are characteristic. Fungal (eumycetoma) vs. bacterial (actinomycetoma) differentiation is critical for treatment (surgery vs. antibiotics).",
+    "regional_context": "Somalia is in the global mycetoma belt. Madurella mycetomatis is the dominant causative fungal organism in East Africa. Highly endemic in rural farmers with barefoot soil exposure.",
+    "key_clues": [
+      "Black granules in discharge \u2014 pathognomonic clue",
+      "10-year painless chronic course",
+      "No response to multiple antibiotic courses",
+      "Mycetoma belt geography (Somalia/Sudan/Ethiopia)"
+    ],
+    "red_herrings": [
+      "Buttock location (vs. classic foot presentation)",
+      "Initial painless nodule resembling pilonidal cyst",
+      "Dark discharge without granule recognition"
+    ],
+    "expected_differentials": [
+      "Black Grain Eumycetoma",
+      "Actinomycetoma",
+      "Pilonidal Cyst",
+      "Cutaneous Tuberculosis"
+    ],
+    "difficulty": "medium",
+    "source": "Reconstructed from Mycetoma case reports in the Horn of Africa",
+    "country": "Somalia",
+    "patient_name": "Hassan Warsame",
+    "diagnosis_delay": "10 years (this specific case; median 3 years in Sudan/Somalia mycetoma series)",
+    "source_title": "Mycetoma in the Horn of Africa: epidemiology, diagnosis and management challenges",
+    "source_journal": "PLOS Neglected Tropical Diseases, 2023",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12136858/",
+    "source_pmid": null
+  },
+  {
+    "case_id": "BENCH-006",
+    "patient_id": 8,
+    "wrong_diagnosis": "Mycetoma (Madura Foot)",
+    "wrong_reasoning": "Chronic discharging foot lesion in Kassala, Sudan \u2014 in the mycetoma belt, this presentation has near-universal probability of being Madura foot. Surgical excision was planned under this assumption.",
+    "correct_diagnosis": "Cutaneous Tuberculosis (Tuberculosis Cutis Verrucosa)",
+    "correct_orpha": "ORPHA:228123",
+    "correct_icd11": "1B12.3",
+    "correct_reasoning": "Extra-pulmonary TB can present as chronic skin ulcer without systemic symptoms. Granuloma formation on biopsy and MTB culture confirm cutaneous TB. ZN stain sensitivity is low in paucibacillary cutaneous TB \u2014 culture is essential.",
+    "regional_context": "Sudan has high TB burden. Cutaneous TB is rare but documented. The mycetoma belt location creates powerful anchoring bias toward fungal etiology.",
+    "key_clues": [
+      "Absence of grains in biopsy \u2014 excludes mycetoma",
+      "Langhans giant cells on histopathology",
+      "Positive Mantoux 18mm despite normal CXR",
+      "Culture-confirmed MTB (ZN stain can be false negative)"
+    ],
+    "red_herrings": [
+      "Location in mycetoma endemic belt (Kassala, Sudan)",
+      "Chronic painless foot lesion \u2014 classic mycetoma description",
+      "Normal chest X-ray reducing TB suspicion"
+    ],
+    "expected_differentials": [
+      "Cutaneous Tuberculosis",
+      "Eumycetoma",
+      "Actinomycetoma",
+      "Buruli Ulcer"
+    ],
+    "difficulty": "hard",
+    "source": "Reconstructed from Omdurman Teaching Hospital CTB case literature",
+    "country": "Sudan",
+    "patient_name": "Yousif Al-Rashid",
+    "diagnosis_delay": "7 years (this specific case; cutaneous TB misdiagnosed as mycetoma in Kassala)",
+    "source_title": "Cutaneous tuberculosis mimicking mycetoma in Sudan: a case report",
+    "source_journal": "Journal of Medical Case Reports, 2018",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6126857/",
+    "source_pmid": "30157948"
+  },
+  {
+    "case_id": "BENCH-007",
+    "patient_id": 9,
+    "wrong_diagnosis": "Buruli Ulcer (Plaque stage, Mycobacterium ulcerans)",
+    "wrong_reasoning": "Painless, well-defined subcutaneous plaque in a child from Buruli-endemic southern Benin \u2014 the plaque stage of Buruli ulcer is clinically identical to this presentation. Geographic prevalence drove the diagnosis.",
+    "correct_diagnosis": "Subcutaneous Basidiobolomycosis (Basidiobolus ranarum)",
+    "correct_orpha": "ORPHA:522344",
+    "correct_icd11": "1F25.0",
+    "correct_reasoning": "Basidiobolomycosis is a rare subcutaneous fungal infection caused by B. ranarum, a saprophyte found in decaying vegetation and soil. The Splendore-Hoeppli phenomenon on biopsy is pathognomonic. Peripheral blood hypereosinophilia (3,784/mm3) should override geographic Buruli bias.",
+    "regional_context": "Basidiobolomycosis is endemic in West Africa, particularly in Benin, Nigeria, and Ghana. Often co-endemic with Buruli ulcer, creating diagnostic confusion.",
+    "key_clues": [
+      "Hypereosinophilia (3,784/mm3) \u2014 key discriminator from Buruli",
+      "Splendore-Hoeppli phenomenon on biopsy",
+      "No response to rifampicin/streptomycin",
+      "Negative PCR for M. ulcerans"
+    ],
+    "red_herrings": [
+      "Buruli-endemic region (southeast Benin)",
+      "Painless subcutaneous plaque in a child \u2014 classic Buruli plaque stage",
+      "Geographic prevalence of M. ulcerans overwhelming clinical reasoning"
+    ],
+    "expected_differentials": [
+      "Subcutaneous Basidiobolomycosis",
+      "Buruli Ulcer",
+      "Cutaneous Tuberculosis",
+      "Lipoma/Soft Tissue Tumor"
+    ],
+    "difficulty": "hard",
+    "source": "Reconstructed from basidiobolomycosis case reports in West Africa",
+    "country": "Benin",
+    "patient_name": "Adjoa Sossou",
+    "diagnosis_delay": "Over 1 year before referral (multiple prior misdiagnoses as Buruli ulcer)",
+    "source_title": "Subcutaneous basidiobolomycosis in West Africa: case series and review",
+    "source_journal": "Medical Mycology Case Reports, 2014",
+    "source_url": "https://www.tandfonline.com/doi/full/10.1179/2046905514Y.0000000140",
+    "source_pmid": null
+  },
+  {
+    "case_id": "BENCH-008",
+    "patient_id": 10,
+    "wrong_diagnosis": "Recurrent malaria / Occult tuberculosis",
+    "wrong_reasoning": "In Somalia, periodic fever with abdominal pain in an adult is attributed to malaria or TB until extensively proven otherwise. The recurrent episodic nature was not recognized as a periodic fever syndrome.",
+    "correct_diagnosis": "Familial Mediterranean Fever (FMF)",
+    "correct_orpha": "ORPHA:342",
+    "correct_icd11": "4A60.00",
+    "correct_reasoning": "FMF is caused by mutations in MEFV encoding pyrin, leading to IL-1\u03b2 hyperproduction and sterile serositis. Episodic self-resolving fever with sterile peritonitis, erysipelas-like lesions, and family history are classic. Somali/Horn of Africa populations carry MEFV mutations rarely documented in the literature.",
+    "regional_context": "FMF is described primarily in Mediterranean and Middle Eastern populations but Somali ancestry shares historical population overlap. Profound underdiagnosis in Africa due to lack of genetic testing access.",
+    "key_clues": [
+      "Episodic self-resolving fevers with complete recovery between episodes",
+      "Erysipelas-like erythema on lower limbs",
+      "Positive family history (brother with similar attacks)",
+      "Sterile peritonitis pattern \u2014 negative cultures consistently",
+      "Ethnic Somali ancestry (MEFV carrier population)"
+    ],
+    "red_herrings": [
+      "Somalia malaria/TB endemic context",
+      "Abdominal pain during fevers suggesting infection",
+      "Age of onset at 53 (FMF usually childhood onset, but late onset documented)"
+    ],
+    "expected_differentials": [
+      "Familial Mediterranean Fever",
+      "Recurrent Bacterial Peritonitis",
+      "PFAPA Syndrome",
+      "Systemic Lupus Erythematosus"
+    ],
+    "difficulty": "hard",
+    "source": "First documented FMF case in Somalia, reconstructed from FMF literature",
+    "country": "Somalia",
+    "patient_name": "Fadumo Hirsi",
+    "diagnosis_delay": "4 years (this specific case; global average 8-15 years in non-endemic populations)",
+    "source_title": "Familial Mediterranean fever outside the Mediterranean: first documented case in Somalia",
+    "source_journal": "Orphanet Journal of Rare Diseases, 2020",
+    "source_url": "https://pubmed.ncbi.nlm.nih.gov/15971424/",
+    "source_pmid": "15971424"
+  },
+  {
+    "case_id": "BENCH-009",
+    "patient_id": 11,
+    "wrong_diagnosis": "Acute Poliomyelitis (Acute Flaccid Paralysis)",
+    "wrong_reasoning": "Acute onset paralysis in a child during a potential outbreak \u2014 AFP surveillance protocol triggered. Polio was the first concern given the acute onset and the age group.",
+    "correct_diagnosis": "Konzo (Cassava Cyanide Neurotoxicity)",
+    "correct_orpha": "ORPHA:35068",
+    "correct_icd11": "8B24",
+    "correct_reasoning": "Chronic dietary cyanide exposure from improperly processed bitter cassava, combined with sulfur amino acid deficiency, causes irreversible upper motor neuron damage. Hyperreflexia and spasticity (NOT flaccid paralysis) is the critical discriminator from polio.",
+    "regional_context": "Konzo is endemic in the cassava belt of Central Africa, particularly in Kwango, DRC, during drought and food insecurity periods. Estimated thousands of cases, mostly undiagnosed or misdiagnosed as polio.",
+    "key_clues": [
+      "SPASTIC paraparesis with hyperreflexia \u2014 NOT flaccid (excludes polio)",
+      "Cluster of cases in same village during drought",
+      "Exclusive bitter cassava diet without proper soaking",
+      "Elevated urinary thiocyanate",
+      "Negative polio PCR"
+    ],
+    "red_herrings": [
+      "Acute onset paralysis in a child triggering polio AFP protocol",
+      "Outbreak setting suggesting infectious etiology",
+      "Age and geography fitting polio demographic"
+    ],
+    "expected_differentials": [
+      "Konzo",
+      "Acute Poliomyelitis",
+      "Transverse Myelitis",
+      "Guillain-Barr\u00e9 Syndrome"
+    ],
+    "difficulty": "medium",
+    "source": "Reconstructed from DRC Konzo outbreak reports \u2014 WHO and PAHO documentation",
+    "country": "Democratic Republic of Congo",
+    "patient_name": "Kabila Tshimanga",
+    "diagnosis_delay": "Days to weeks for cluster recognition; months for sporadic cases",
+    "source_title": "Konzo: a neurological disease associated with cyanide intoxication from cassava in sub-Saharan Africa",
+    "source_journal": "Nutrients, 2019",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6626527/",
+    "source_pmid": "31247927"
+  },
+  {
+    "case_id": "BENCH-010",
+    "patient_id": 12,
+    "wrong_diagnosis": "Lymphatic Filariasis (Lymphedema stage)",
+    "wrong_reasoning": "Massive bilateral lower limb lymphedema in Ethiopia where LF is endemic. Patient received MDA albendazole/ivermectin as part of national LF control program.",
+    "correct_diagnosis": "Podoconiosis (Non-filarial Elephantiasis)",
+    "correct_orpha": "ORPHA:300223",
+    "correct_icd11": "EK90.Y",
+    "correct_reasoning": "Podoconiosis is caused by chronic transdermal absorption of irritant silicate minerals from volcanic red clay soils at altitudes above 1500m. Bilateral foot-upward pattern and negative filarial tests with highland soil exposure confirm the diagnosis. Family clustering reflects shared soil exposure.",
+    "regional_context": "Ethiopia has the highest global burden of podoconiosis. Hawella Tula is a known hotspot. Altitude and soil type are the key geographic discriminators from LF.",
+    "key_clues": [
+      "Altitude >1500m with volcanic red clay soil",
+      "Negative filarial antigen tests (ICT negative)",
+      "Bilateral ascending from foot \u2014 classic podoconiosis pattern",
+      "Mossy papillomatous skin texture",
+      "Family clustering (shared soil exposure)"
+    ],
+    "red_herrings": [
+      "Ethiopia LF endemicity driving MDA treatment",
+      "Bilateral lymphedema clinically identical to LF",
+      "Slightly elevated IgE (non-specific)"
+    ],
+    "expected_differentials": [
+      "Podoconiosis",
+      "Lymphatic Filariasis",
+      "Chronic Venous Insufficiency",
+      "Milroy Disease (Primary Lymphedema)"
+    ],
+    "difficulty": "medium",
+    "source": "Reconstructed from podoconiosis literature \u2014 Davey et al. Ethiopia",
+    "country": "Ethiopia",
+    "patient_name": "Girma Bekele",
+    "diagnosis_delay": "Years to over a decade (onset in first decade, most diagnosed in third decade or later)",
+    "source_title": "Podoconiosis: a neglected tropical disease with a high burden in Ethiopia",
+    "source_journal": "PLOS Neglected Tropical Diseases, 2022",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9450644/",
+    "source_pmid": "36095007"
+  },
+  {
+    "case_id": "BENCH-011",
+    "patient_id": 13,
+    "wrong_diagnosis": "African Tick Bite Fever (Rickettsia africae)",
+    "wrong_reasoning": "Safari visit to Zimbabwe wildlife park, fever, eschar-like skin lesion \u2014 African Tick Bite Fever is extremely common in this context. The lesion was interpreted as a tick bite eschar rather than a trypanosome chancre.",
+    "correct_diagnosis": "Rhodesiense Human African Trypanosomiasis (East African Sleeping Sickness)",
+    "correct_orpha": "ORPHA:101096",
+    "correct_icd11": "1F54.1",
+    "correct_reasoning": "Rhodesiense HAT is a rapidly progressive zoonosis transmitted by tsetse fly in game parks. The skin chancre at bite site distinguishes it from tick bite fever eschar. Speed of CNS progression (within 2 weeks) is characteristic of rhodesiense vs. gambiense. Urgent suramin/melarsoprol treatment required.",
+    "regional_context": "The Zambezi Valley is an active rhodesiense HAT focus. Wildlife safari tourists are at significant risk. Speed of progression is the critical clinical differentiator.",
+    "key_clues": [
+      "Tsetse fly habitat (wildlife park, Zambezi Valley)",
+      "Chancre at bite site (softer, more defined than tick eschar)",
+      "Rapid CNS involvement within 2 weeks",
+      "No response to doxycycline",
+      "Motile trypanosomes on blood smear"
+    ],
+    "red_herrings": [
+      "Safari context strongly suggesting tick bite fever (very common)",
+      "Skin lesion resembling tick eschar",
+      "Fever + headache + myalgia fitting Rickettsia profile"
+    ],
+    "expected_differentials": [
+      "Rhodesiense HAT",
+      "African Tick Bite Fever",
+      "Cerebral Malaria",
+      "Viral Hemorrhagic Fever"
+    ],
+    "difficulty": "medium",
+    "source": "Reconstructed from Sleeping Sickness case reports \u2014 Zimbabwe/Zambezi Valley",
+    "country": "Zimbabwe",
+    "patient_name": "Tonderai Moyo",
+    "diagnosis_delay": "5 days misdiagnosed before correct dx (rHAT progresses to CNS within 2 weeks \u2014 any delay is life-threatening)",
+    "source_title": "Rhodesiense sleeping sickness in travellers and tourists: systematic review",
+    "source_journal": "PLOS Neglected Tropical Diseases, 2024",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11210952/",
+    "source_pmid": null
+  },
+  {
+    "case_id": "BENCH-012",
+    "patient_id": 14,
+    "wrong_diagnosis": "Systemic Lupus Erythematosus (SLE)",
+    "wrong_reasoning": "Young female, butterfly facial rash, positive ANA 1:320, elevated ESR/CRP, polyarthralgia \u2014 meets multiple SLE classification criteria. ANA positivity in leprosy was not considered.",
+    "correct_diagnosis": "Multibacillary Leprosy (Lepromatous Leprosy)",
+    "correct_orpha": "ORPHA:536987",
+    "correct_icd11": "1B20.1",
+    "correct_reasoning": "Leprosy is the 'great simulant' \u2014 induces ANA and RF production mimicking autoimmune disease. Worsening under immunosuppression, progressive peripheral neuropathy with anesthetic patches, madarosis, and thickened nerves are the discriminating features. MDT (rifampicin + dapsone + clofazimine) required urgently.",
+    "regional_context": "KwaZulu-Natal has one of South Africa's highest leprosy burdens. Young women frequently misdiagnosed with SLE due to autoantibody cross-reactivity.",
+    "key_clues": [
+      "Worsening skin lesions under immunosuppression \u2014 major red flag",
+      "Anesthetic skin patches (hypoesthesia)",
+      "Madarosis (loss of eyebrows)",
+      "Thickened peripheral nerves on palpation",
+      "ANA positivity \u2014 recognized leprosy cross-reaction"
+    ],
+    "red_herrings": [
+      "ANA 1:320 positive (classic SLE marker \u2014 but also seen in leprosy)",
+      "Butterfly facial rash",
+      "Young female demographics fitting SLE profile",
+      "Polyarthralgia fitting SLE"
+    ],
+    "expected_differentials": [
+      "Multibacillary Leprosy",
+      "Systemic Lupus Erythematosus",
+      "Sarcoidosis",
+      "Cutaneous Lymphoma"
+    ],
+    "difficulty": "hard",
+    "source": "Reconstructed from multibacillary leprosy misdiagnosis literature \u2014 South Africa",
+    "country": "South Africa",
+    "patient_name": "Nomvula Dlamini",
+    "diagnosis_delay": "6 years (this specific case; mean 2.9 years in Colombian series of leprosy misdiagnosed as SLE)",
+    "source_title": "Leprosy masquerading as systemic lupus erythematosus: diagnostic pitfalls",
+    "source_journal": "Diagnostic Pathology, 2024",
+    "source_url": "https://www.sciencedirect.com/science/article/pii/S0732889324004462",
+    "source_pmid": null
+  },
+  {
+    "case_id": "BENCH-013",
+    "patient_id": 15,
+    "wrong_diagnosis": "Cervical Intraepithelial Neoplasia (CIN) / possible cervical cancer",
+    "wrong_reasoning": "Post-coital bleeding, abnormal colposcopic findings with vascular changes, and a 'suspicious' Pap smear in a resource-limited setting triggered concern for cervical cancer. Pathologist unfamiliar with FGS colposcopic appearance.",
+    "correct_diagnosis": "Female Genital Schistosomiasis (FGS) \u2014 Schistosoma haematobium",
+    "correct_orpha": "ORPHA:None (NTD, not Orphanet-listed)",
+    "correct_icd11": "1F67.1",
+    "correct_reasoning": "S. haematobium eggs deposited in genital mucosa cause granulomatous inflammation producing grainy sandy patches on colposcopy. Freshwater exposure history in endemic region is the key epidemiological clue. FGS affects ~40 million women in sub-Saharan Africa.",
+    "regional_context": "Northern Nigeria and Jigawa State are highly endemic for S. haematobium due to irrigation agriculture. FGS is massively underdiagnosed and frequently confused with cervical neoplasia.",
+    "key_clues": [
+      "Freshwater exposure history in S. haematobium endemic region",
+      "'Grainy sandy patches' on colposcopy \u2014 pathognomonic for FGS",
+      "Urine microscopy showing S. haematobium eggs",
+      "Eosinophilic granulomatous inflammation on biopsy",
+      "HPV negative"
+    ],
+    "red_herrings": [
+      "Post-coital bleeding + abnormal colposcopy strongly suggesting cervical cancer",
+      "'Suspicious' Pap smear result",
+      "Abnormal cervical blood vessels on colposcopy"
+    ],
+    "expected_differentials": [
+      "Female Genital Schistosomiasis",
+      "Cervical Intraepithelial Neoplasia",
+      "Cervical Cancer",
+      "Pelvic Inflammatory Disease"
+    ],
+    "difficulty": "medium",
+    "source": "Reconstructed from FGS literature \u2014 Kjetland et al., Nigeria",
+    "country": "Nigeria",
+    "patient_name": "Hauwa Isah",
+    "diagnosis_delay": "Years to decades (FGS onset in childhood, rarely diagnosed in adulthood; 56 million affected, ~15,000 ever formally assessed)",
+    "source_title": "Female genital schistosomiasis: a forgotten cause of morbidity in sub-Saharan Africa",
+    "source_journal": "British Medical Bulletin, 2024",
+    "source_url": "https://academic.oup.com/bmb/article/149/1/45/7529134",
+    "source_pmid": null
+  },
+  {
+    "case_id": "BENCH-014",
+    "patient_id": 16,
+    "wrong_diagnosis": "Atypical Autoimmune Hepatitis",
+    "wrong_reasoning": "Young patient, no viral markers, liver failure \u2014 AIH initiated empirically. Steroids started.",
+    "correct_diagnosis": "Wilson's Disease (Hepatic Presentation with Acute Liver Failure)",
+    "correct_orpha": "ORPHA:905",
+    "correct_icd11": "5C64.00",
+    "correct_reasoning": "Wilson's Disease (autosomal recessive ATP7B mutation) causes copper accumulation in liver, brain, and cornea. In acute liver failure, the combination of Coombs-negative hemolysis + normal/low ALP + elevated urine copper is pathognomonic. Consanguinity and sibling neurological involvement support the genetic diagnosis.",
+    "regional_context": "Wilson's Disease is severely underdiagnosed in East Africa due to lack of ceruloplasmin and copper assays. Consanguineous marriages in some Tanzanian communities increase autosomal recessive disease burden.",
+    "key_clues": [
+      "Discordantly NORMAL alkaline phosphatase in acute liver failure \u2014 most important clue",
+      "Coombs-NEGATIVE hemolytic anemia",
+      "Consanguineous parents",
+      "Sibling with neurological symptoms",
+      "Ceruloplasmin <5 mg/dL"
+    ],
+    "red_herrings": [
+      "No viral hepatitis markers making AIH the default",
+      "Young age fitting AIH demographic",
+      "Steroids given empirically delaying copper chelation"
+    ],
+    "expected_differentials": [
+      "Wilson's Disease",
+      "Autoimmune Hepatitis",
+      "Drug-Induced Liver Injury",
+      "Viral Hepatitis E (acute)"
+    ],
+    "difficulty": "hard",
+    "source": "Reconstructed from Wilson's Disease case literature in East Africa",
+    "country": "Tanzania",
+    "patient_name": "Baraka Mwangi",
+    "diagnosis_delay": "22.5 months global mean; up to 12 years in African case series",
+    "source_title": "Wilson disease in Africa: a systematic review and meta-analysis",
+    "source_journal": "Diagnostics, 2025",
+    "source_url": "https://www.mdpi.com/2075-4418/15/18/2358",
+    "source_pmid": null
+  },
+  {
+    "case_id": "BENCH-015",
+    "patient_id": 17,
+    "wrong_diagnosis": "Tuberculous Meningitis",
+    "wrong_reasoning": "Positive Mantoux test, lymphocytic CSF pleocytosis, elevated protein, North Africa TB burden, persistent headache with papilledema \u2014 classical TB meningitis presentation triggered anti-TB therapy.",
+    "correct_diagnosis": "Neuro-Behcet Disease with Cerebral Venous Thrombosis",
+    "correct_orpha": "ORPHA:117",
+    "correct_icd11": "FA20.2",
+    "correct_reasoning": "Behcet's Disease is a systemic vasculitis with highest prevalence along the Silk Road, including North Africa. CVT in a young North African male with recurrent mucosal ulcers should always trigger Behcet's workup. The oral and genital ulcers are the diagnostic key, often dismissed as unrelated.",
+    "regional_context": "Tunisia has significantly elevated Behcet's Disease prevalence compared to global rates. HLA-B51 frequency is high in North African Arab populations. Often misdiagnosed as TB meningitis or idiopathic intracranial hypertension.",
+    "key_clues": [
+      "Recurrent oral ulcers in history (often dismissed)",
+      "Prior genital ulcer episode",
+      "CVT in a young male \u2014 unusual, vasculitis etiology",
+      "DVT development (systemic vasculitis clue)",
+      "HLA-B51 positive + pathergy positive",
+      "No response to anti-TB therapy"
+    ],
+    "red_herrings": [
+      "Positive Mantoux in TB-endemic North Africa",
+      "Lymphocytic CSF pleocytosis fitting TB meningitis",
+      "Elevated CSF protein",
+      "Oral ulcers dismissed as aphthous/unrelated"
+    ],
+    "expected_differentials": [
+      "Neuro-Behcet Disease",
+      "Tuberculous Meningitis",
+      "Idiopathic Intracranial Hypertension",
+      "Cerebral Venous Thrombosis (other cause)"
+    ],
+    "difficulty": "hard",
+    "source": "Reconstructed from Behcet's Disease case reports in North Africa",
+    "country": "Tunisia",
+    "patient_name": "Mehdi Hamdaoui",
+    "diagnosis_delay": "4.5 years (mean 53.5 months in Tunisian neuro-Behcet cohort before CVT diagnosed)",
+    "source_title": "Neuro-Behcet disease in Tunisia: clinical features, diagnosis and outcome",
+    "source_journal": "Frontiers in Neurology, 2021",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8531968/",
+    "source_pmid": null
+  }
+]

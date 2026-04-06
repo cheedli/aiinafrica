@@ -9,7 +9,7 @@ export default function Investigation() {
   const location = useLocation()
   const navigate = useNavigate()
   const { text, pdfs, images } = location.state || {}
-  const { events, report, fullReport, isRunning, error, startAnalysis } = useAgentStream()
+  const { events, report, fullReport, isRunning, error, taskUrl, startAnalysis } = useAgentStream()
   const started = useRef(false)
 
   useEffect(() => {
@@ -83,7 +83,7 @@ export default function Investigation() {
           transition={{ duration: 0.35 }}
           className="clay-dark overflow-hidden flex flex-col min-h-0"
         >
-          <AgentFeed events={events} isRunning={isRunning} />
+          <AgentFeed events={events} isRunning={isRunning} taskUrl={taskUrl} />
         </motion.div>
 
         <motion.div

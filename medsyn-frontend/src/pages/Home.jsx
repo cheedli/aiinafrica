@@ -65,7 +65,7 @@ export default function Home() {
   const canStart = text.trim() || pdfs.length || images.length
 
   return (
-    <div className="relative min-h-screen pt-20 pb-12 px-4">
+    <div className="relative min-h-screen pt-16 pb-12 px-4">
       {/* Background blobs */}
       <div className="blob w-[500px] h-[500px] bg-teal-300 -top-20 -left-40" />
       <div className="blob w-[400px] h-[400px] bg-teal-400 bottom-0 -right-20" style={{ animationDelay: '3s' }} />
