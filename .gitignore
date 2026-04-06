@@ -11,3 +11,8 @@ medsyn-backend/chroma_db/
 *.pyc
 tmp/
 commands.txt
+CLAUDE.md
+docs/plans/
+medsyn-backend/CLAUDE.md
+medsyn-backend/test_manus_sendmsg.py
+generate_deliverable.py
